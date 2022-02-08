@@ -1,0 +1,23 @@
+{
+  "name": "tforum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "local": "serverless offline start --stage production",
+    "deploy:prod": "serverless deploy --stage production --aws-profile tesis"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "joi": "^17.5.0",
+    "lambda-api": "^0.11.2",
+    "typeorm": "^0.2.41",
+    "typeorm-aurora-data-api-driver": "^2.3.4"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.1053.0",
+    "serverless-offline": "^8.3.1"
+  }
+}

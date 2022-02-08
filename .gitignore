@@ -1,0 +1,4 @@
+.serverless
+node_modules/
+env.production.json
+package-lock.json

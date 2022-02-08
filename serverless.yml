@@ -1,0 +1,40 @@
+service: tforum
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: us-east-1
+  stage: ${opt:stage}
+  environment: ${file(env.${opt:stage, self:provider.stage}.json)}
+  apiGateway:
+    restApiId: vxbxsb67zb
+    restApiRootResourceId: vi056jhqu2
+
+
+package:
+  #  include:
+  #    - include-me.js
+  #    - include-me-dir/**
+  exclude:
+    - node_modules/**
+    - package.json
+    - package-lock.json
+
+functions:
+  app:
+    handler: handler.Server
+    events:
+      - http:
+          path: /forum/{proxy+}
+          method: any
+          cors:
+            origin: "*"
+            headers: # <-- Specify allowed headers
+              - Content-Type
+              - X-Amz-Date
+              - X-Amz-Security-Token
+            allowCredentials: false     
+plugins:
+  - serverless-offline
